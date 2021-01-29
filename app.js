@@ -1,12 +1,14 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+require('dotenv').config();
 const mongoose = require('mongoose');
-var db = 'mongodb+srv://Ayush1109:OT2ugKg7lau8XxSN@mvn.1myl7.mongodb.net/ecommerce?retryWrites=true&w=majority';
+var db = process.env.DB;
+var dB = db;
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-mongoose.connect(db,  {
+mongoose.connect(dB,  {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
@@ -49,7 +51,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000, ()=>{
+app.listen(process.env.PORT, ()=>{
   console.log('server is up on 3000')  //printing of this line on console means the server has started
 });
 
